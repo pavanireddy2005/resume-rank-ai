@@ -1,30 +1,30 @@
 import nodemailer from "nodemailer";
 
 const sendEmail = async (to, subject, html) => {
-  console.log("EMAIL_USER:", process.env.EMAIL_USER);
-  console.log("EMAIL_PASS exists:", !!process.env.EMAIL_PASS);
-
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    connectionTimeout: 30000,
+    greetingTimeout: 30000,
+    socketTimeout: 30000,
   });
 
-  try {
-    await transporter.sendMail({
-      from: `"ResumeRank AI" <${process.env.EMAIL_USER}>`,
-      to,
-      subject,
-      html,
-    });
+  await transporter.verify();
+  console.log("SMTP connection successful");
 
-    console.log("✅ Email sent successfully.");
-  } catch (error) {
-    console.error("Email Error:", error);
-    throw error;
-  }
+  await transporter.sendMail({
+    from: `"ResumeRank AI" <${process.env.EMAIL_USER}>`,
+    to,
+    subject,
+    html,
+  });
+
+  console.log("✅ Email sent successfully.");
 };
 
 export default sendEmail;
