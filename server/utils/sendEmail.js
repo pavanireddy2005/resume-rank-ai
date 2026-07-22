@@ -9,24 +9,23 @@ const sendEmail = async (to, subject, html) => {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    logger: true,
+    debug: true,
     connectionTimeout: 10000,
     greetingTimeout: 10000,
     socketTimeout: 10000,
   });
 
-  // Verify SMTP connection
+  console.log("Verifying SMTP...");
   await transporter.verify();
   console.log("SMTP VERIFIED");
 
-  // Send the email
   await transporter.sendMail({
     from: `"ResumeRank AI" <${process.env.EMAIL_USER}>`,
     to,
     subject,
     html,
   });
-
-  console.log("✅ Email sent successfully");
 };
 
 export default sendEmail;
