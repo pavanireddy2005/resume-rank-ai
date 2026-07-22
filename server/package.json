@@ -1,0 +1,41 @@
+{
+  "name": "resumerank-ai-server",
+  "version": "1.0.0",
+  "description": "Backend API for ResumeRank AI - AI-powered ATS Resume Analyzer",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "resume",
+    "ats",
+    "ai",
+    "groq",
+    "express",
+    "mongodb",
+    "nodejs"
+  ],
+  "author": "Pavani Reddy",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "groq-sdk": "^1.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "mammoth": "^1.12.0",
+    "mongoose": "^8.18.1",
+    "multer": "^2.2.0",
+    "pdf-parse": "^1.1.1",
+    "validator": "^13.15.15"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
