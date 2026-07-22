@@ -2,28 +2,23 @@ import nodemailer from "nodemailer";
 
 const sendEmail = async (to, subject, html) => {
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: "smtp-relay.brevo.com",
     port: 587,
     secure: false,
     auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+      user: process.env.BREVO_USER,
+      pass: process.env.BREVO_PASS,
     },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
-    });
-
-  console.log("Verifying SMTP...");
-  await transporter.verify();
-  console.log("SMTP VERIFIED");
+  });
 
   await transporter.sendMail({
-    from: `"ResumeRank AI" <${process.env.EMAIL_USER}>`,
+    from: `"ResumeRank AI" <${process.env.BREVO_USER}>`,
     to,
     subject,
     html,
   });
+
+  console.log("Email Sent Successfully");
 };
 
 export default sendEmail;
